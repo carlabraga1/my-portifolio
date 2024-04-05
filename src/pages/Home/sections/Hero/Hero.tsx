@@ -8,13 +8,21 @@ import StyledButton from "../../../../components/StyledButton/StyledButton";
 import { AnimatedBackground } from "../../../../components/AnimatedBackground/AnimatedBackground";
 
 const Hero = () => {
-  const StyledHero = styled("div")(({}) => ({
+  const StyledHero = styled("div")(({theme}) => ({
     backgroundColor: "#121212",
     height: "100vh",
     
     display: "flex",
-    alignItems: "center"
-  }));
+    alignItems: "center",
+    [theme.breakpoints.up('xs')]: { // <= mobile
+      paddingTop: "100px",
+
+  },
+  [theme.breakpoints.up('md')]: { // >=mobile
+      paddingTop: "0",
+  }
+}))
+
   const StyledImg = styled("img")(() => ({
     width: "85%",
     borderRadius: "50%",
@@ -40,7 +48,7 @@ const Hero = () => {
                Hi, I'm Carla Braga🖐️
               </Typography>
               <Typography color="primary" variant="h4" textAlign="center">
-                I'm a Software Engineer
+                 Software Engineer
               </Typography>
               <Grid container display="flex" justifyContent="center" spacing={3} pt={3}>
                 <Grid
@@ -52,7 +60,7 @@ const Hero = () => {
                   
                 >
             
-                  <StyledButton>
+                  <StyledButton onClick={() => console.log('download')}>
                   <DownloadIcon />
                     Download CV
                     
@@ -65,7 +73,7 @@ const Hero = () => {
                   display="flex"
                   justifyContent="center"
                 >
-                  <StyledButton>
+                  <StyledButton onClick={() => console.log('contact')}>
                     <EmailIcon /> Contact me
                   </StyledButton>
                 </Grid>
